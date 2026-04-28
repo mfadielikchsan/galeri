@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload / Kamera</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+        .box {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        input {
+            margin-top: 15px;
+        }
+        img {
+            margin-top: 20px;
+            max-width: 100%;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <h2>Ambil Foto / Pilih dari Galeri</h2>
+
+    <!-- Input kamera + galeri -->
+    <input 
+        type="file" 
+        accept="image/*" 
+        capture="environment" 
+        onchange="previewImage(event)"
+    >
+
+    <br>
+
+    <!-- Preview gambar -->
+    <img id="preview" src="" alt="Preview akan muncul di sini">
+</div>
+
+<script>
+function previewImage(event) {
+    const reader = new FileReader();
+    reader.onload = function() {
+        const img = document.getElementById('preview');
+        img.src = reader.result;
+    }
+    reader.readAsDataURL(event.target.files[0]);
+}
+</script>
+
+</body>
+</html>
